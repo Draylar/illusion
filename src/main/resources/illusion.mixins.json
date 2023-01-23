@@ -1,0 +1,24 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "dev.draylar.illusion.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "mixins": [
+    "block.AbstractBlockMixin",
+    "block.BlockMixin",
+    "network.ServerPlayNetworkHandlerMixin",
+    "network.ThreadedAnvilChunkStorageMixin",
+    "packet.BlockUpdateS2CPacketMixin",
+    "packet.ChunkDeltaUpdateS2CPacketMixin",
+    "palette.ArrayPaletteMixin",
+    "palette.BiMapPaletteMixin",
+    "palette.SingularPaletteMixin",
+    "server.ServerPlayerEntityMixin",
+    "server.ServerTickMixin"
+  ],
+  "client": [
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
