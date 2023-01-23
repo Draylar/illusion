@@ -34,5 +34,9 @@ maven {
 ```
 
 ```groovy
-modImplementation "dev.draylar:illusion:${project.illusion_version}"
+// For Fabric developers:
+modImplementation "dev.draylar:illusion-fabric:${project.illusion_version}"
+
+// For Forge developers:
+modImplementation "dev.draylar:illusion-forge:${project.illusion_version}"
 ```
