@@ -39,7 +39,7 @@ public class BlockMixin {
                         List<ItemStack> dropped = getDroppedStacks(newState, (ServerWorld) world, pos, blockEntity, entity, stack);
                         if(dropped != null) {
                             dropped.forEach((itemStack) -> dropStack(world, pos, itemStack));
-                            newState.onStacksDropped((ServerWorld) world, pos, stack);
+                            newState.onStacksDropped((ServerWorld) world, pos, stack, true);
                         }
 
                         ci.cancel();
