@@ -67,4 +67,10 @@ public abstract class ServerPlayerEntityMixin implements PlayerIllusionState {
 
         return null;
     }
+
+    @Unique
+    public void clear() {
+        remapper.values().clear();
+        illusionResultCache.clear();
+    }
 }

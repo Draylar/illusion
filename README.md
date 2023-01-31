@@ -8,19 +8,21 @@ sent to clients based off player predicates. Take this example...
 > Prevent a player from finding Iron Ore while they are sneaking.
 
 ```java
-var illusion = Illusion.create()
+Illusions.add(registry -> {
+    Illusion.create()
         .map(Illusion.from(Blocks.IRON_ORE), Illusion.to(Blocks.STONE))
         .modifyDrops(true)
         .modifyProperties(true)
         .when(Entity::isSneaking)
-        .build();
-
-IllusionRegistry.register(illusion);
+        .build(registry);
+});
 ```
 
 This Illusion will remap Iron Ore to Stone on clients when they are sneaking.
 Iron Ore will still exist on the server, but any interactions will act as if the player
 interacted with stone - including block breaking speed, block drops, and more.
+
+Illusion registration is done inside the reload listener so Illusions can be cleared and reloaded at any time.
 
 ### For Developers
 

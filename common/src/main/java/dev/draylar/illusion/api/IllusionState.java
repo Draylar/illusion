@@ -64,6 +64,10 @@ public class IllusionState {
         return state;
     }
 
+    public void clear() {
+        global.values.clear();
+    }
+
     public record StateRemap(Map<Block, List<Illusion>> values) {
 
         public List<Illusion> get(Block state) {

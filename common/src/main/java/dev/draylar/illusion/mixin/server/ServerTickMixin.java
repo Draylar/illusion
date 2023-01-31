@@ -1,7 +1,7 @@
 package dev.draylar.illusion.mixin.server;
 
 import dev.draylar.illusion.api.Illusion;
-import dev.draylar.illusion.api.IllusionRegistry;
+import dev.draylar.illusion.api.Illusions;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.PlayerManager;
 import net.minecraft.util.profiler.Profiler;
@@ -25,7 +25,7 @@ public class ServerTickMixin {
     @Inject(method = "tick", at = @At("HEAD"))
     private void illusion$tickPredicates(BooleanSupplier shouldKeepTicking, CallbackInfo ci) {
         profiler.push("Illusion");
-        for (Illusion illusion : IllusionRegistry.getAll()) {
+        for (Illusion illusion : Illusions.getAll()) {
             Illusion.STATE.tick(illusion, playerManager.getPlayerList());
         }
 

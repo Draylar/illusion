@@ -8,4 +8,6 @@ public interface PlayerIllusionState {
     boolean tickIllusion(Illusion illusion);
 
     Illusion getActive(BlockState state);
+
+    void clear();
 }

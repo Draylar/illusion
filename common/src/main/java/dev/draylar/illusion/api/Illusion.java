@@ -54,7 +54,7 @@ public class Illusion {
     }
 
     public static BlockState remap(ServerPlayerEntity player, BlockState target) {
-        @Nullable BlockState remapped = IllusionRegistry.getFirstRemap(target, player);
+        @Nullable BlockState remapped = Illusions.getFirstRemap(target, player);
         return Objects.requireNonNullElse(remapped, target);
     }
 
@@ -67,7 +67,7 @@ public class Illusion {
     }
 
     public void delete() {
-        IllusionRegistry.delete(this);
+        Illusions.delete(this);
     }
 
     public boolean test(ServerPlayerEntity player) {
@@ -90,6 +90,14 @@ public class Illusion {
         private int updateFrequency = 1;
         private ApplicationStrategy applicationStrategy = ApplicationStrategy.PER_PLAYER;
         private Predicate<ServerPlayerEntity> predicate = player -> true;
+
+        public Builder mapBlock(Block from, Block to) {
+            return map(new IllusionTarget(from), new IllusionReplacement(to.getDefaultState()));
+        }
+
+        public Builder mapBlockState(BlockState from, BlockState to) {
+            return map(new IllusionTarget(from.getBlock()), new IllusionReplacement(to));
+        }
 
         public Builder map(IllusionTarget from, IllusionReplacement to) {
             replacements.put(from, to);
@@ -127,6 +135,12 @@ public class Illusion {
 
         public Illusion build() {
             return new Illusion(replacements, modifyDrops, modifyProperties, updateFrequency, applicationStrategy, predicate);
+        }
+
+        public Illusion build(Illusions registry) {
+            Illusion illusion = build();
+            registry.register(illusion);
+            return illusion;
         }
     }
 }
