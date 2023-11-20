@@ -10,7 +10,7 @@ import net.minecraft.item.Items;
 public class IllusionCommon {
 
     public static void init() {
-        if(Platform.isDevelopmentEnvironment()) {
+        if (Platform.isDevelopmentEnvironment()) {
             IllusionRegistry.register(Illusion.create()
                     .map(Illusion.from(Blocks.IRON_ORE), Illusion.to(Blocks.DIAMOND_BLOCK))
                     .modifyDrops(true)

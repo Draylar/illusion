@@ -10,7 +10,10 @@ import org.spongepowered.asm.mixin.*;
 @Mixin(BlockUpdateS2CPacket.class)
 public class BlockUpdateS2CPacketMixin implements PacketContextModifier {
 
-    @Shadow @Final @Mutable private BlockState state;
+    @Shadow
+    @Final
+    @Mutable
+    private BlockState state;
 
     @Unique
     @Override

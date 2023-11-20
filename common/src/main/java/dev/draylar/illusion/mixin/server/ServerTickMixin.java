@@ -16,8 +16,10 @@ import java.util.function.BooleanSupplier;
 @Mixin(MinecraftServer.class)
 public class ServerTickMixin {
 
-    @Shadow private PlayerManager playerManager;
-    @Shadow private Profiler profiler;
+    @Shadow
+    private PlayerManager playerManager;
+    @Shadow
+    private Profiler profiler;
 
     /**
      * Each server tick: update {@link Illusion} states for the global server, and for each individual player.

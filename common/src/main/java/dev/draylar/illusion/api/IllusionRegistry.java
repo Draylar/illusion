@@ -12,7 +12,7 @@ public class IllusionRegistry {
     private static final Map<Block, List<Illusion>> BY_STATE = new LinkedHashMap<>();
 
     public static void register(Illusion illusion) {
-        if(illusion.isEmpty()) {
+        if (illusion.isEmpty()) {
             return;
         }
 
@@ -29,7 +29,7 @@ public class IllusionRegistry {
     public static BlockState getFirstRemap(BlockState target, ServerPlayerEntity player) {
         Block asBlock = target.getBlock();
         List<Illusion> illusions = BY_STATE.get(asBlock);
-        if(illusions == null) {
+        if (illusions == null) {
             return target;
         }
 
@@ -37,7 +37,7 @@ public class IllusionRegistry {
 
             // todo: cache test values every tick, rather than checking them every time a block is serialized
             // otherwise we might run this ~1000 times in a single operation
-            if(illusion.test(player)) {
+            if (illusion.test(player)) {
                 return illusion.getReplacements().get(asBlock);
             }
         }
