@@ -16,14 +16,14 @@ public class IllusionState {
     private final StateRemap global = new StateRemap(new HashMap<>());
 
     public void tick(Illusion illusion, List<ServerPlayerEntity> players) {
-        if(illusion.getStrategy() == ApplicationStrategy.GLOBAL) {
+        if (illusion.getStrategy() == ApplicationStrategy.GLOBAL) {
             // TODO: NYI
         } else {
             for (ServerPlayerEntity player : players) {
                 boolean result = ((PlayerIllusionState) player).tickIllusion(illusion);
-                if(result) {
+                if (result) {
                     // Re-send chunk packets
-                    player.getWorld().getChunkManager().threadedAnvilChunkStorage.handlePlayerAddedOrRemoved(
+                    player.getServerWorld().getChunkManager().threadedAnvilChunkStorage.handlePlayerAddedOrRemoved(
                             player,
                             true
                     );
@@ -35,18 +35,18 @@ public class IllusionState {
     @Nullable
     public Illusion getActive(ServerPlayerEntity player, BlockState state) {
         @Nullable List<Illusion> globalRemap = global.get(state.getBlock());
-        if(globalRemap != null) {
-            if(!globalRemap.isEmpty()) {
+        if (globalRemap != null) {
+            if (!globalRemap.isEmpty()) {
                 return globalRemap.get(0);
             }
         }
 
-        return  ((PlayerIllusionState) player).getActive(state);
+        return ((PlayerIllusionState) player).getActive(state);
     }
 
     public BlockState remap(ServerPlayerEntity player, BlockState state) {
         @Nullable Illusion illusion = getActive(player, state);
-        if(illusion == null) {
+        if (illusion == null) {
             return state;
         }
 
@@ -54,9 +54,9 @@ public class IllusionState {
     }
 
     public BlockState remap(Illusion illusion, BlockState state) {
-        if(illusion != null) {
+        if (illusion != null) {
             @Nullable BlockState replacement = illusion.getReplacements().get(state.getBlock());
-            if(replacement != null) {
+            if (replacement != null) {
                 return replacement;
             }
         }
@@ -76,7 +76,7 @@ public class IllusionState {
 
         public void remove(Block key, Illusion illusion) {
             @Nullable List<Illusion> illusions = values.get(key);
-            if(illusions != null) {
+            if (illusions != null) {
                 illusions.remove(illusion);
             }
         }

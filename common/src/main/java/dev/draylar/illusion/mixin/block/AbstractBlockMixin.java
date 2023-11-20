@@ -17,7 +17,7 @@ public class AbstractBlockMixin {
 
     @Inject(method = "calcBlockBreakingDelta", at = @At("HEAD"), cancellable = true)
     private void illusion$adjustBlockDelta(PlayerEntity player, BlockView world, BlockPos pos, CallbackInfoReturnable<Float> cir) {
-        if(player instanceof ServerPlayerEntity serverPlayerEntity) {
+        if (player instanceof ServerPlayerEntity serverPlayerEntity) {
             BlockState remapped = Illusion.STATE.remap(serverPlayerEntity, (BlockState) (Object) this);
             cir.setReturnValue(
                     remapped.getBlock().calcBlockBreakingDelta(

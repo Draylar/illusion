@@ -28,12 +28,12 @@ public abstract class ServerPlayerEntityMixin implements PlayerIllusionState {
         boolean reload = false;
         Boolean prev = illusionResultCache.putIfAbsent(illusion, false);
         boolean result = illusion.test((ServerPlayerEntity) (Object) this);
-        if(prev == null || result != prev) {
+        if (prev == null || result != prev) {
             illusionResultCache.put(illusion, result);
 
             // The predicate changed values from false to true.
             // This Illusion should now be applied to all BlockStates it covers.
-            if(result) {
+            if (result) {
 
                 // For each Block that this Illusion remaps, store it in the block's list.
                 for (var entry : illusion.getReplacements().entrySet()) {
@@ -59,8 +59,8 @@ public abstract class ServerPlayerEntityMixin implements PlayerIllusionState {
     @Override
     public Illusion getActive(BlockState state) {
         @Nullable List<Illusion> globalRemap = remapper.get(state.getBlock());
-        if(globalRemap != null) {
-            if(!globalRemap.isEmpty()) {
+        if (globalRemap != null) {
+            if (!globalRemap.isEmpty()) {
                 return globalRemap.get(0);
             }
         }

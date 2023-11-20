@@ -13,7 +13,9 @@ import org.spongepowered.asm.mixin.Unique;
 @Mixin(ChunkDeltaUpdateS2CPacket.class)
 public class ChunkDeltaUpdateS2CPacketMixin implements PacketContextModifier {
 
-    @Shadow @Final private BlockState[] blockStates;
+    @Shadow
+    @Final
+    private BlockState[] blockStates;
 
     @Unique
     @Override

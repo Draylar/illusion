@@ -117,7 +117,7 @@ public class Illusion {
         }
 
         public Builder updateFrequency(int ticks) {
-            if(ticks <= 0) {
+            if (ticks <= 0) {
                 throw new IllegalStateException("Illusion update frequency must be 1 or more ticks!");
             }
 
